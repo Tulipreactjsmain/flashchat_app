@@ -17,3 +17,6 @@ const kMessageContainerDecoration = BoxDecoration(
     top: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
   ),
 );
+
+Color kFrenchGrey = const Color(0xffCED3DC);
+Color kAirForceBlue = const Color(0xff4E8098);
