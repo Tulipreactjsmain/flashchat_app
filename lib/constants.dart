@@ -18,5 +18,22 @@ const kMessageContainerDecoration = BoxDecoration(
   ),
 );
 
-Color kFrenchGrey = const Color(0xffCED3DC);
-Color kAirForceBlue = const Color(0xff4E8098);
+const Color kFrenchGrey = Color(0xffCED3DC);
+const Color kAirForceBlue = Color(0xff4E8098);
+
+const InputDecoration kInputStyles = InputDecoration(
+  hintText: 'Enter your password.',
+  hintStyle: TextStyle(color: kAirForceBlue),
+  contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+  border: OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(32.0)),
+  ),
+  enabledBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: kAirForceBlue, width: 1.0),
+    borderRadius: BorderRadius.all(Radius.circular(32.0)),
+  ),
+  focusedBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: kAirForceBlue, width: 2.0),
+    borderRadius: BorderRadius.all(Radius.circular(32.0)),
+  ),
+);
