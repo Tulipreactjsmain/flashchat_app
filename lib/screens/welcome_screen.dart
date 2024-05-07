@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flashchat_app/screens/login_screen.dart';
 import 'package:flashchat_app/screens/registration_screen.dart';
 import 'package:flashchat_app/components/rounded_button.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -50,14 +51,23 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     child: Image.asset('images/logo.png'),
                   ),
                 ),
-                const Text(
-                  'Flash Chat',
-                  style: TextStyle(
+                DefaultTextStyle(
+                  style: const TextStyle(
                     color: Colors.black54,
-                    fontSize: 45.0,
+                    fontSize: 35.0,
                     fontWeight: FontWeight.w900,
                   ),
-                ),
+                  child: AnimatedTextKit(
+                    animatedTexts: [
+                      WavyAnimatedText('FLash Chat'),
+                      // WavyAnimatedText('Look at the waves'),
+                    ],
+                    isRepeatingAnimation: true,
+                    onTap: () {
+                      // print("Tap Event");
+                    },
+                  ),
+                )
               ],
             ),
             const SizedBox(
