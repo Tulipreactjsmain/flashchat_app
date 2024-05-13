@@ -3,8 +3,12 @@ import 'package:flashchat_app/screens/welcome_screen.dart';
 import 'package:flashchat_app/screens/login_screen.dart';
 import 'package:flashchat_app/screens/registration_screen.dart';
 import 'package:flashchat_app/screens/chat_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(const FlashChat());
+void main() {
+  runApp(const FlashChat());
+  Firebase.initializeApp();
+}
 
 class FlashChat extends StatelessWidget {
   const FlashChat({super.key});
@@ -24,7 +28,7 @@ class FlashChat extends StatelessWidget {
         WelcomeScreen.id: (context) => const WelcomeScreen(),
         LoginScreen.id: (context) => const LoginScreen(),
         RegistrationScreen.id: (context) => const RegistrationScreen(),
-        ChatScreen.id : (context) => const ChatScreen()
+        ChatScreen.id: (context) => const ChatScreen()
       },
     );
   }

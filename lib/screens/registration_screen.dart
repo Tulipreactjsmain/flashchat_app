@@ -1,4 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api, avoid_print
+// ignore_for_file: library_private_types_in_public_api
 
 import 'package:flashchat_app/constants.dart';
 import 'package:flashchat_app/screens/chat_screen.dart';
@@ -18,6 +18,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final _auth = FirebaseAuth.instance;
   late String email;
   late String password;
+  UserCredential? newUser;
+
+  Future<void> registerUser() async {
+    try {
+      newUser = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+    } catch (e) {
+      print('Error from registerUser function: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,15 +71,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             RoundedButton(
               title: 'Register',
               onPressed: () async {
-               try {
-                 final newUser = await _auth.createUserWithEmailAndPassword(
-                    email: email, password: password);
-                    if (newUser.credential != null) {
-                      Navigator.pushNamed(context, ChatScreen.id);
-                    }
-               } catch (e) {
-                print(e);
-               }
+                await registerUser();
+                if (!context.mounted) return;
+                newUser?.user != null
+                    ? Navigator.pushNamed(context, ChatScreen.id)
+                    : "";
               },
               color: kAirForceBlue,
             ),

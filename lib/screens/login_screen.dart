@@ -1,8 +1,10 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:flashchat_app/components/rounded_button.dart';
 import 'package:flashchat_app/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flashchat_app/screens/chat_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -14,6 +16,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _auth = FirebaseAuth.instance;
+  late String email;
+  late String password;
+  UserCredential? userCredential;
   @override
   void initState() {
     super.initState();
@@ -41,25 +47,40 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 48.0,
             ),
             TextField(
-              onChanged: (value) {
-                //Do something with the user input.
-              },
-              decoration: kInputStyles.copyWith(hintText: "Enter your email")
-            ),
+                onChanged: (value) {
+                  email = value;
+                },
+                decoration:
+                    kInputStyles.copyWith(hintText: "Enter your email")),
             const SizedBox(
               height: 8.0,
             ),
             TextField(
                 onChanged: (value) {
-                  //Do something with the user input.
+                  password = value;
                 },
+                obscureText: true,
                 decoration: kInputStyles),
             const SizedBox(
               height: 24.0,
             ),
             RoundedButton(
               title: 'Login',
-              onPressed: () {},
+              onPressed: () async {
+                try {
+                  userCredential = await _auth.signInWithEmailAndPassword(
+                    email: email,
+                    password: password,
+                  );
+                  print('Error from isUser: $userCredential');
+                  if (!context.mounted) return;
+                  userCredential != null
+                      ? Navigator.pushNamed(context, ChatScreen.id)
+                      : "";
+                } catch (e) {
+                  print('Error from loginUser function: $e');
+                }
+              },
               color: kAirForceBlue,
             ),
           ],
