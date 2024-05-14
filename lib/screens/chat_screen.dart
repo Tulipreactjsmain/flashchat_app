@@ -36,20 +36,6 @@ class _ChatScreenState extends State<ChatScreen> {
     }
   }
 
-Future<void> printFirestoreCollections() async {
-  try {
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('messages').get();
-
-    querySnapshot.docs.forEach((doc) {
-      print('Document ID: ${doc.id}');
-      print('Text: ${doc['text']}');
-      print('Sender: ${doc['sender']}');
-      print('-----------------------------');
-    });
-  } catch (e) {
-    print('Error printing Firestore collections: $e');
-  }
-}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,6 +48,7 @@ Future<void> printFirestoreCollections() async {
               onPressed: () {
                 _auth.signOut();
                 Navigator.pop(context);
+                // getMessages();
               }),
         ],
         title: const Text('⚡️Chat'),
@@ -72,6 +59,30 @@ Future<void> printFirestoreCollections() async {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            StreamBuilder<QuerySnapshot>(
+                stream: _firestore.collection('messages').snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    final messages = snapshot.data?.docs;
+
+                    List<Text> messageWidgtes = [];
+                    for (var message in messages!) {
+                      final messageText =
+                          message.data() as Map<String, dynamic>;
+                      final messageWidget = Text(
+                        '${messageText['text']} from ${messageText['sender']}',
+                        style: const TextStyle(color: Colors.black),
+                      );
+                      messageWidgtes.add(messageWidget);
+                    }
+                    return Column(
+                      children: messageWidgtes,
+                    );
+                  } else {
+                    // If snapshot does not have data, return a default widget or handle the case accordingly
+                    return const CircularProgressIndicator();
+                  }
+                }),
             Container(
               decoration: kMessageContainerDecoration,
               child: Row(
@@ -89,7 +100,7 @@ Future<void> printFirestoreCollections() async {
                     onPressed: () {
                       _firestore.collection('messages').add(
                           {'text': messageText, 'sender': loggedInUser?.email});
-                          // await printFirestoreCollections();
+                      // await printFirestoreCollections();
                     },
                     child: const Text(
                       'Send',
