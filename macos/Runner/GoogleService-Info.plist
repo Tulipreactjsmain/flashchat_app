@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.flashchatApp.RunnerTests</string>
+	<string>com.example.flashchatApp</string>
 	<key>PROJECT_ID</key>
 	<string>flashchat-f48a7</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:68077147180:ios:af127523001287d5a46d89</string>
+	<string>1:68077147180:ios:b7fe6ac4ed77b636a46d89</string>
 </dict>
 </plist>

@@ -4,10 +4,13 @@ import 'package:flashchat_app/screens/login_screen.dart';
 import 'package:flashchat_app/screens/registration_screen.dart';
 import 'package:flashchat_app/screens/chat_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async {
   runApp(const FlashChat());
-  Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
 
 class FlashChat extends StatelessWidget {
