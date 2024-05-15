@@ -1,16 +1,6 @@
 # flashchat_app
-
-A new Flutter project.
+Readme in transit......
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="https://res.cloudinary.com/techbro/image/upload/v1715736076/Simulator_Screenshot_-_iPhone_15_Pro_Max_-_2024-05-14_at_21.25.48_tkz8oc.png" height="100%" width="300px" alt=""></img>
