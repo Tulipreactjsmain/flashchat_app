@@ -5,6 +5,7 @@ import 'package:flashchat_app/components/rounded_button.dart';
 import 'package:flashchat_app/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flashchat_app/screens/chat_screen.dart';
+import 'package:flutter/widgets.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -41,11 +42,13 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Hero(
-                tag: "logo",
-                child: SizedBox(
-                  height: 200.0,
-                  child: Image.asset('images/logo.png'),
+              Flexible(
+                child: Hero(
+                  tag: "logo",
+                  child: SizedBox(
+                    height: 200.0,
+                    child: Image.asset('images/logo.png'),
+                  ),
                 ),
               ),
               const SizedBox(

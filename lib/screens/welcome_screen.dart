@@ -34,60 +34,71 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white38.withOpacity(controller.value),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                // ignore: sized_box_for_whitespace
-                Hero(
-                  tag: "logo",
-                  child: SizedBox(
-                    height: animation.value * 80,
-                    child: Image.asset('images/logo.png'),
+      // backgroundColor: Colors.black.withOpacity(controller.value),
+      body: Container(
+        decoration:  BoxDecoration(
+          image: DecorationImage(
+            image: const AssetImage('images/female-tourist-texting-messages.webp'),
+            fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(
+                Colors.black.withOpacity(0.3), BlendMode.dstATop),
+          ),
+        ),
+        constraints: const BoxConstraints.expand(),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  // ignore: sized_box_for_whitespace
+                  Hero(
+                    tag: "logo",
+                    child: SizedBox(
+                      height: animation.value * 80,
+                      child: Image.asset('images/logo.png'),
+                    ),
                   ),
-                ),
-                DefaultTextStyle(
-                  style: const TextStyle(
-                    color: Colors.black54,
-                    fontSize: 35.0,
-                    fontWeight: FontWeight.w900,
-                  ),
-                  child: AnimatedTextKit(
-                    animatedTexts: [
-                      WavyAnimatedText('FLash Chat'),
-                      // WavyAnimatedText('Look at the waves'),
-                    ],
-                    isRepeatingAnimation: true,
-                    onTap: () {
-                      // print("Tap Event");
-                    },
-                  ),
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 48.0,
-            ),
-            RoundedButton(
-              color: kFrenchGrey,
-              title: "Log in",
-              onPressed: () {
-                Navigator.pushNamed(context, LoginScreen.id);
-              },
-            ),
-            RoundedButton(
-              color: kAirForceBlue,
-              title: "Register",
-              onPressed: () {
-                Navigator.pushNamed(context, RegistrationScreen.id);
-              },
-            ),
-          ],
+                  DefaultTextStyle(
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 35.0,
+                      fontWeight: FontWeight.w900,
+                    ),
+                    child: AnimatedTextKit(
+                      animatedTexts: [
+                        WavyAnimatedText(''),
+                        // WavyAnimatedText('Look at the waves'),
+                      ],
+                      isRepeatingAnimation: true,
+                      onTap: () {
+                        // print("Tap Event");
+                      },
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 48.0,
+              ),
+              RoundedButton(
+                color: kFrenchGrey,
+                title: "Log in",
+                onPressed: () {
+                  Navigator.pushNamed(context, LoginScreen.id);
+                },
+              ),
+              RoundedButton(
+                color: kAirForceBlue,
+                title: "Register",
+                onPressed: () {
+                  Navigator.pushNamed(context, RegistrationScreen.id);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
